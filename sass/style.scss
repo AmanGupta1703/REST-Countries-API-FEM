@@ -1,2 +1,9 @@
 @import "./reset";
 @import "./base";
+
+// components
+@import "./components/container-styles";
+
+// partials (sections)
+@import "./_partials/header";
+@import "./_partials/theme";

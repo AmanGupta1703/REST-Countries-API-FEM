@@ -1,0 +1,36 @@
+.theme {
+  cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	// ICONS START
+	&__icon {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	&__icon--show {
+		display: inline-block;
+	}
+
+	&__icon--hide {
+		display: none;
+	}
+	// ICONS END
+
+	// TEXT START
+	&__text {
+    font-weight: var(--fw-semibold);
+    font-size: 1.4rem;
+	}
+
+	&__text--show {
+		display: inline-block;
+	}
+
+	&__text--hide {
+		display: none;
+	}
+	// TEXT END
+}
