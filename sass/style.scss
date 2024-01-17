@@ -5,5 +5,11 @@
 @import "./components/container-styles";
 
 // partials (sections)
+
+// HEADER
 @import "./_partials/header";
 @import "./_partials/theme";
+
+// MAIN
+@import "./_partials/main";
+@import "./_partials/form";
