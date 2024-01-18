@@ -11,7 +11,11 @@
 		width: 45rem;
 		transition: 0.5s all ease;
 
-		@media screen and (min-width: 320px) and (max-width: 425px) {
+		@media screen and (max-width: 730px) {
+			width: 50%;
+		}
+
+		@media screen and (max-width: 420px) {
 			width: 100%;
 		}
 

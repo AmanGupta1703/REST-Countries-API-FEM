@@ -7,6 +7,10 @@
 	transition: all 0.5s ease;
 	position: relative;
 
+	@media screen and (max-width: 730px) {
+		max-width: 25rem;
+	}
+
 	&:hover {
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
 	}
