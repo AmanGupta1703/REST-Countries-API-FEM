@@ -1,5 +1,6 @@
 .main {
 	margin: 4rem 0 0;
+	padding-bottom: 4rem;
 
 	&__container {
 		display: flex;
@@ -19,6 +20,7 @@
 
 	&__country-list-container {
 		display: flex;
+		justify-content: center;
 		flex-wrap: wrap;
 		gap: 6rem;
 
