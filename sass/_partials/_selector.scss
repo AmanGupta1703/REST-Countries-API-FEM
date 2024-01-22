@@ -25,6 +25,10 @@
 		width: 23rem;
 	}
 
+	&__trigger {
+		text-transform: capitalize;
+	}
+
 	&__icon {
 		transition: all 0.5s ease;
 	}
@@ -42,7 +46,7 @@
 		transition: 0.5s all ease;
 
 		position: absolute;
-		z-index: -1;
+
 		left: 0;
 		width: 100%;
 
@@ -50,16 +54,19 @@
 			top: 0;
 			visibility: hidden;
 			opacity: 0;
+			z-index: -1;
 		}
 
 		&--show {
 			top: 110%;
 			visibility: visible;
 			opacity: 1;
+			z-index: 2;
 		}
 	}
 
 	&__option {
+		cursor: pointer;
 		text-transform: capitalize;
 		margin-bottom: 1rem;
 	}

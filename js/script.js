@@ -1,26 +1,72 @@
 // https://restcountries.com/v3.1/all
 
-import { fetchCountriesData, render, searchCountry } from "./helper.js";
+import {
+	fetchCountriesData,
+	filterByRegion,
+	render,
+	searchCountry,
+} from "./helper.js";
 
 const data = await fetchCountriesData();
 
-const formSearchCountryEl = document.querySelector(".form--search-country");
 const countryListContainerEl = document.querySelector(
 	".main__country-list-container"
 );
 
-formSearchCountryEl.addEventListener("submit", function (e) {
-	e.preventDefault();
+function setupCountrySearchForm() {
+	const formSearchCountryEl = document.querySelector(".form--search-country");
 
-	const countryToSearch = formSearchCountryEl.countryName.value;
+	formSearchCountryEl.addEventListener("submit", function (e) {
+		e.preventDefault();
 
-	if (!countryToSearch) {
-		return;
-	}
+		const countryToSearch = formSearchCountryEl.countryName.value;
 
-	searchCountry(data, countryToSearch).then((data) => {
-		render(countryListContainerEl, data);
+		if (!countryToSearch) {
+			return;
+		}
+
+		searchCountry(data, countryToSearch).then((data) => {
+			render(countryListContainerEl, data);
+		});
+
+		formSearchCountryEl.reset();
+	});
+}
+
+function setupRegionSelector() {
+	const selectorHeaderEl = document.querySelector(".selector__header");
+	const selectorTriggerEl = document.querySelector(".selector__trigger");
+	const selectorIconEl = document.querySelector(".selector__icon");
+	const selectorOptionsEl = document.querySelector(".selector__options");
+
+	selectorHeaderEl.addEventListener("click", function () {
+		selectorOptionsEl.classList.toggle("selector__options--hide");
+		selectorOptionsEl.classList.toggle("selector__options--show");
+
+		selectorIconEl.classList.toggle("selector__icon--active");
 	});
 
-	formSearchCountryEl.reset();
-});
+	selectorOptionsEl.addEventListener("click", function (e) {
+		const { region } = e.target.dataset;
+
+		selectorTriggerEl.textContent = region;
+
+		filterByRegion(data, region).then((data) => {
+			if (!data.length) {
+				console.log(0);
+
+				countryListContainerEl.textContent =
+					"<p>No countries found for this region</p>";
+			}
+			console.log(data);
+			render(countryListContainerEl, data);
+		});
+	});
+}
+
+function init() {
+	setupCountrySearchForm();
+	setupRegionSelector();
+}
+
+init();

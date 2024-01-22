@@ -58,9 +58,9 @@ async function searchCountry(allCountries, countryToSearch) {
 	});
 }
 
-async function filterByRegion(allCountries) {
+async function filterByRegion(allCountries, region) {
 	return allCountries.filter((country) => {
-		return country.region.toLowerCase() === sortByRegion.toLowerCase();
+		return country.region.toLowerCase() === region.toLowerCase();
 	});
 }
 

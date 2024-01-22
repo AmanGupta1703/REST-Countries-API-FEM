@@ -134,6 +134,8 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 6rem;
+  position: relative;
+  z-index: 1;
 }
 
 .form__group {
@@ -217,6 +219,9 @@ body {
   padding: 2rem;
   width: 23rem;
 }
+.selector__trigger {
+  text-transform: capitalize;
+}
 .selector__icon {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -235,7 +240,6 @@ body {
   -webkit-transition: 0.5s all ease;
   transition: 0.5s all ease;
   position: absolute;
-  z-index: -1;
   left: 0;
   width: 100%;
 }
@@ -243,13 +247,16 @@ body {
   top: 0;
   visibility: hidden;
   opacity: 0;
+  z-index: -1;
 }
 .selector__options--show {
   top: 110%;
   visibility: visible;
   opacity: 1;
+  z-index: 2;
 }
 .selector__option {
+  cursor: pointer;
   text-transform: capitalize;
   margin-bottom: 1rem;
 }
@@ -259,7 +266,7 @@ body {
           box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 0.8rem;
   overflow: hidden;
-  max-width: 30rem;
+  width: 30rem;
 }
 .card__header {
   height: 20rem;
