@@ -1,0 +1,36 @@
+.dark {
+	color: var(--color-white);
+	background-color: var(--color-dark-mode-02);
+
+	.header {
+		background-color: var(--color-dark-mode-01);
+	}
+
+	.form__group {
+		background-color: var(--color-dark-mode-01);
+
+		.form__input {
+			color: var(--color-white);
+		}
+	}
+
+	.selector {
+		color: var(--color-white);
+		background-color: var(--color-dark-mode-01);
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+	}
+
+	.selector__options {
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+		background-color: var(--color-dark-mode-01);
+	}
+
+	.card {
+		background-color: var(--color-dark-mode-01);
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+	}
+
+	* {
+		transition: all 0.8s ease;
+	}
+}

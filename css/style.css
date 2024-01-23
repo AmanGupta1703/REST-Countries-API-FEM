@@ -275,6 +275,7 @@ body {
 }
 
 .card {
+  cursor: pointer;
   -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
           box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 0.8rem;
@@ -306,4 +307,38 @@ body {
 }
 .card__text__value {
   font-weight: var(--fw-light);
+}
+
+.dark {
+  color: var(--color-white);
+  background-color: var(--color-dark-mode-02);
+}
+.dark .header {
+  background-color: var(--color-dark-mode-01);
+}
+.dark .form__group {
+  background-color: var(--color-dark-mode-01);
+}
+.dark .form__group .form__input {
+  color: var(--color-white);
+}
+.dark .selector {
+  color: var(--color-white);
+  background-color: var(--color-dark-mode-01);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+}
+.dark .selector__options {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+  background-color: var(--color-dark-mode-01);
+}
+.dark .card {
+  background-color: var(--color-dark-mode-01);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+}
+.dark * {
+  -webkit-transition: all 0.8s ease;
+  transition: all 0.8s ease;
 }
