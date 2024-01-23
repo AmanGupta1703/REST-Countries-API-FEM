@@ -19,12 +19,21 @@
 	}
 
 	&__country-list-container {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: 6rem;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 6rem;
 
 		position: relative;
 		z-index: 1;
+
+		@media screen and (max-width: 730px) {
+			justify-items: center;
+			grid-template-columns: 1fr;
+		}
+		
+		@media screen and (min-width: 730px) and (max-width: 768px) { 
+			grid-template-columns: repeat(3, 1fr);
+		}
+
 	}
 }
