@@ -33,4 +33,9 @@
 	* {
 		transition: all 0.8s ease;
 	}
+
+	.btn--md {
+		color: var(--color-white);
+		background-color: var(--color-dark-mode-01);
+	}
 }

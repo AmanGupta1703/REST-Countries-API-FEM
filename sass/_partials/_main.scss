@@ -30,10 +30,20 @@
 			justify-items: center;
 			grid-template-columns: 1fr;
 		}
-		
-		@media screen and (min-width: 730px) and (max-width: 768px) { 
+
+		@media screen and (min-width: 730px) and (max-width: 768px) {
 			grid-template-columns: repeat(3, 1fr);
 		}
+	}
 
+	// country detail
+	&__country-detail {
+		margin-top: 6rem;
+
+		&__container {
+			margin-top: 8rem;
+		}
 	}
 }
+
+
