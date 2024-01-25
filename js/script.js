@@ -7,6 +7,8 @@ import {
 	searchCountry,
 } from "./helper.js";
 
+import { toggleTheme } from "./utility.js";
+
 const data = await fetchCountriesData();
 
 const countryListContainerEl = document.querySelector(
@@ -27,6 +29,7 @@ function setupCountrySearchForm() {
 
 		searchCountry(data, countryToSearch).then((data) => {
 			render(countryListContainerEl, data);
+			handleCardClick();
 		});
 
 		formSearchCountryEl.reset();
@@ -58,18 +61,26 @@ function setupRegionSelector() {
 				countryListContainerEl.textContent =
 					"<p>No countries found for this region</p>";
 			}
-			console.log(data);
 			render(countryListContainerEl, data);
+			handleCardClick();
 		});
 	});
 }
 
-function toggleTheme() {
-	const body = document.querySelector("body");
-	const themeToggleEl = document.querySelector(".theme--toggle");
+function handleCardClick() {
+	const cardCountryEl = Array.from(document.querySelectorAll(".card--country"));
+	cardCountryEl.forEach((cardCountry) => {
+		cardCountry.addEventListener("click", function (e) {
+			const { countryname } = e.target.closest(".card")?.dataset;
 
-	themeToggleEl.addEventListener("click", function () {
-		body.classList.toggle("dark");
+			const encodedCountryName = encodeURIComponent(countryname);
+
+			const newUrl = `country-details.html?countryName=${encodedCountryName}`;
+
+			console.log(newUrl);
+
+			window.location.href = newUrl;
+		});
 	});
 }
 
@@ -77,6 +88,7 @@ function init() {
 	setupCountrySearchForm();
 	setupRegionSelector();
 	toggleTheme();
+	handleCardClick();
 }
 
 init();

@@ -2,7 +2,7 @@ function generateCountryCardHTML(data) {
 	return data
 		.map(
 			(country) => `
-				<div class="card card--country">
+				<div class="card card--country" data-countryName="${country.name.common}">
 					<div class="card__header">
 						<img
 							src=${country.flags.svg}
