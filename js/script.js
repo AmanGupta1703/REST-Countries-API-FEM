@@ -1,6 +1,8 @@
 // https://restcountries.com/v3.1/all
 
 import {
+	generateCountryCardHTML,
+	generateCountryDetailHTML,
 	fetchCountriesData,
 	filterByRegion,
 	render,
@@ -8,6 +10,9 @@ import {
 } from "./helper.js";
 
 const data = await fetchCountriesData();
+
+// TODO: CHECK HOW TO GET CURRENCY VALUE
+// TODO: CHECK HOW TO GET LANGUAGES VALUE
 
 const countryListContainerEl = document.querySelector(
 	".main__country-list-container"
@@ -26,7 +31,7 @@ function setupCountrySearchForm() {
 		}
 
 		searchCountry(data, countryToSearch).then((data) => {
-			render(countryListContainerEl, data);
+			render(countryListContainerEl, data, generateCountryCardHTML);
 			handleCardClick();
 		});
 
@@ -59,7 +64,7 @@ function setupRegionSelector() {
 				countryListContainerEl.textContent =
 					"<p>No countries found for this region</p>";
 			}
-			render(countryListContainerEl, data);
+			render(countryListContainerEl, data, generateCountryCardHTML);
 			handleCardClick();
 		});
 	});
@@ -67,17 +72,27 @@ function setupRegionSelector() {
 
 function handleCardClick() {
 	const cardCountryEl = Array.from(document.querySelectorAll(".card--country"));
+
+	const mainCountryDetailEl = document.querySelector(".main__country-detail"); // toggle hide class
+
+	const mainContainerEl = document.querySelector(".main__container"); // toggle hide class
+	const mainCountrySectionEl = document.querySelector(".main__country-section"); // toggle hide class
+
+	// render details of a country
+	const mainCountryDetailContainerEl = document.querySelector(
+		".main__country-detail__container"
+	);
+
 	cardCountryEl.forEach((cardCountry) => {
 		cardCountry.addEventListener("click", function (e) {
 			const { countryname } = e.target.closest(".card")?.dataset;
 
-			const encodedCountryName = encodeURIComponent(countryname);
-
-			const newUrl = `country-details.html?countryName=${encodedCountryName}`;
-
-			console.log(newUrl);
-
-			window.location.href = newUrl;
+			searchCountry(data, countryname).then((data) => {
+				mainCountryDetailEl.classList.toggle("hide");
+				mainContainerEl.classList.toggle("hide");
+				mainCountrySectionEl.classList.toggle("hide");
+				render(mainCountryDetailContainerEl, data, generateCountryDetailHTML);
+			});
 		});
 	});
 }
@@ -90,6 +105,19 @@ function toggleTheme() {
 		body.classList.toggle("dark");
 	});
 }
+
+const btnBackEl = document.querySelector(".btn--back");
+
+btnBackEl.addEventListener("click", function () {
+	const mainCountryDetailEl = document.querySelector(".main__country-detail"); // toggle hide class
+
+	const mainContainerEl = document.querySelector(".main__container"); // toggle hide class
+	const mainCountrySectionEl = document.querySelector(".main__country-section"); // toggle hide class
+
+	mainCountryDetailEl.classList.toggle("hide");
+	mainContainerEl.classList.toggle("hide");
+	mainCountrySectionEl.classList.toggle("hide");
+});
 
 function init() {
 	setupCountrySearchForm();
