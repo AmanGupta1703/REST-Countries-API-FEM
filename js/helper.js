@@ -38,84 +38,98 @@ function generateCountryCardHTML(data) {
 
 function generateCountryDetailHTML(data) {
 	return data.map(
-		(country) =>
-			`
-				<div class="detail detail--country">
-					<div class="detail__img-container">
-						<img
-							src="${country.flags?.svg}"
-							alt="${country.flags?.alt || `${country.name?.common} flag`}"
-							class="detail__img detail__img--flag" />
-					</div>
+		(country) => `
+    <div class="detail detail--country">
+      <div class="detail__img-container">
+        <img
+          src="${country.flags?.svg}"
+          alt="${country.flags?.alt || `${country.name?.common} flag`}"
+          class="detail__img detail__img--flag" />
+      </div>
 
-					<div class="detail__body">
-						<h1 class="detail__country-name">${country.name.common}</h1>
+      <div class="detail__body">
+        <h1 class="detail__country-name">${country.name.common}</h1>
 
-						<div class="row">
-							<div class="col-1">
-								<p class="detail__native-name">
-									<strong>Native Name:</strong>
-									${country.name?.common || "Not Defined"}
-								</p>
+        <div class="row">
+          <div class="col-1">
+            <p class="detail__native-name">
+              <strong>Native Name:</strong>
+              ${
+								country.name?.nativeName?.cat?.common ||
+								"Native name not provided"
+							}
+            </p>
 
-								<p class="detail__population">
-									<strong>Population:</strong>
-									${country.population.toLocaleString() || "Not Defined"}
-								</p>
+            <p class="detail__population">
+              <strong>Population:</strong>
+              ${
+								country.population
+									? country.population.toLocaleString()
+									: "Population not available"
+							}
+            </p>
 
-								<p class="detail__region">
-									<strong>Region:</strong>
-									${country.region || "Not Defined"}
-								</p>
+            <p class="detail__region">
+              <strong>Region:</strong>
+              ${country.region || "Region not defined"}
+            </p>
 
-								<p class="detail__sub-region">
-									<strong>Sub Region:</strong>
-									${country.subregion || "Not Defined"}
-								</p>
+            <p class="detail__sub-region">
+              <strong>Sub Region:</strong>
+              ${country.subregion || "Sub region not defined"}
+            </p>
 
-								<p class="detail__capital">
-									<strong>Capital:</strong>
-									${country.capital?.[0] || "Not Defined"}
-								</p>
-							</div>
+            <p class="detail__capital">
+              <strong>Capital:</strong>
+              ${country.capital?.[0] || "Capital not defined"}
+            </p>
+          </div>
 
-							<div class="col-1">
-								<p class="detail__domain">
-									<strong>Top Level Domain:</strong>
-									${country.tld[0] || "Not Defined"}
-								</p>
+          <div class="col-1">
+            <p class="detail__domain">
+              <strong>Top Level Domain:</strong>
+              ${country.tld?.[0] || "Domain not defined"}
+            </p>
 
-								<p class="detail__currency">
-									<strong>Currency:</strong>
-									${country.name.common || "Not Defined"} Currency
-								</p>
+            <p class="detail__currency">
+              <strong>Currency:</strong>
+              ${
+								country.currencies
+									? country.currencies[Object.keys(country.currencies)[0]].name
+									: "Currency not defined"
+							}
+            </p>
 
-								<p class="detail__language">
-									<strong>Language:</strong>
-									${country.languages?.[country?.cca3?.toLowerCase()] || "Not Defined"}
-								</p>
-							</div>
-						</div>
+            <p class="detail__language">
+              <strong>Language:</strong>
+              ${
+								country.languages
+									? Object.values(country.languages).join(", ")
+									: "Language not defined"
+							}
+            </p>
+          </div>
+        </div>
 
-						<div class="detail__border-country-list">
-							<h3 class="detail__border-country__heading">Border Countries:</h3>
+        <div class="detail__border-country-list">
+          <h3 class="detail__border-country__heading">Border Countries:</h3>
 
-							<div class="border border--country-list">
-							${
-								country.borders?.length && country?.borders.length > 0
-									? country?.borders
-											.map(
-												(border) =>
-													`<button class="btn btn--md btn--border">${border}</button>`
-											)
-											.join("")
-									: "<p>No border found.</p>" || "<p>No border found.</p>"
-							}		
-							</div>
-						</div>
-					</div>
-				</div>
-			`
+          <div class="border border--country-list">
+            ${
+							country.borders?.length && country.borders.length > 0
+								? country.borders
+										.map(
+											(border) =>
+												`<button class="btn btn--md btn--border">${border}</button>`
+										)
+										.join("")
+								: "<p>No bordering countries found.</p>"
+						}
+          </div>
+        </div>
+      </div>
+    </div>
+  `
 	);
 }
 
