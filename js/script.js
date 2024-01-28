@@ -106,23 +106,29 @@ function toggleTheme() {
 	});
 }
 
-const btnBackEl = document.querySelector(".btn--back");
+function toggleElementsVisibility() {
+	const btnBackEl = document.querySelector(".btn--back");
 
-btnBackEl.addEventListener("click", function () {
-	const mainCountryDetailEl = document.querySelector(".main__country-detail"); // toggle hide class
+	btnBackEl.addEventListener("click", function () {
+		const mainCountryDetailEl = document.querySelector(".main__country-detail"); // toggle hide class
 
-	const mainContainerEl = document.querySelector(".main__container"); // toggle hide class
-	const mainCountrySectionEl = document.querySelector(".main__country-section"); // toggle hide class
+		const mainContainerEl = document.querySelector(".main__container"); // toggle hide class
+		const mainCountrySectionEl = document.querySelector(
+			".main__country-section"
+		); // toggle hide class
 
-	mainCountryDetailEl.classList.toggle("hide");
-	mainContainerEl.classList.toggle("hide");
-	mainCountrySectionEl.classList.toggle("hide");
-});
+		mainCountryDetailEl.classList.toggle("hide");
+		mainContainerEl.classList.toggle("hide");
+		mainCountrySectionEl.classList.toggle("hide");
+	});
+}
 
 function init() {
+	render(countryListContainerEl, data, generateCountryCardHTML);
 	setupCountrySearchForm();
 	setupRegionSelector();
 	toggleTheme();
+	toggleElementsVisibility();
 	handleCardClick();
 }
 
