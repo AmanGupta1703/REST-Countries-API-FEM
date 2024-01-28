@@ -355,8 +355,19 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-gap: 8rem;
 }
+@media screen and (max-width: 730px) {
+  .detail {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+.detail__img-container {
+  width: 100%;
+  height: 45rem;
+}
 .detail__img {
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -386,7 +397,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 50%;
+  width: 70%;
 }
 .row p {
   font-size: 1.2rem;
