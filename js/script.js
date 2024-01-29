@@ -8,12 +8,10 @@ import {
 	render,
 	searchCountry,
 	searchExactCountry,
+	getBorderCountryDetail,
 } from "./helper.js";
 
 const data = await fetchCountriesData();
-
-// TODO: CHECK HOW TO GET CURRENCY VALUE
-// TODO: CHECK HOW TO GET LANGUAGES VALUE
 
 const countryListContainerEl = document.querySelector(
 	".main__country-list-container"
@@ -123,6 +121,25 @@ function toggleElementsVisibility() {
 		mainCountrySectionEl.classList.toggle("hide");
 	});
 }
+
+document.addEventListener("click", function (e) {
+	const btnBorderEl = e.target.classList.contains("btn--border");
+	if (btnBorderEl) {
+		const mainCountryDetailContainerEl = document.querySelector(
+			".main__country-detail__container"
+		);
+
+		getBorderCountryDetail(data, e.target.textContent.toUpperCase()).then(
+			(country) => {
+				render(
+					mainCountryDetailContainerEl,
+					country,
+					generateCountryDetailHTML
+				);
+			}
+		);
+	}
+});
 
 function init() {
 	render(countryListContainerEl, data, generateCountryCardHTML);

@@ -168,6 +168,14 @@ async function filterByRegion(allCountries, region) {
 	});
 }
 
+async function getBorderCountryDetail(allCountries, countryCode) {
+	return allCountries.filter((country) => {
+		if (country.cca3 === countryCode) {
+			return country;
+		}
+	});
+}
+
 async function render(element, data, callback) {
 	element.innerHTML = "";
 	element.insertAdjacentHTML("afterbegin", callback(data));
@@ -181,5 +189,6 @@ export {
 	searchCountry,
 	searchExactCountry,
 	filterByRegion,
+	getBorderCountryDetail,
 	render,
 };
