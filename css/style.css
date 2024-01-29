@@ -417,6 +417,10 @@ body {
 .dark .header {
   background-color: var(--color-dark-mode-01);
 }
+.dark .theme__icon {
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
 .dark .form__group {
   background-color: var(--color-dark-mode-01);
 }

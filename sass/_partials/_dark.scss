@@ -6,6 +6,10 @@
 		background-color: var(--color-dark-mode-01);
 	}
 
+	.theme__icon {
+		filter: invert(100%);
+	}
+
 	.form__group {
 		background-color: var(--color-dark-mode-01);
 
