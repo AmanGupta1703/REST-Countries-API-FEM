@@ -146,12 +146,19 @@ async function getAllRegions(allCountries) {
 	return [...new Set(regions)];
 }
 
-// TODO: TRY TO IMPROVE THE SEARCH FUNCTIONALITY
 async function searchCountry(allCountries, countryToSearch) {
 	return allCountries.filter((country) => {
 		const { common } = country.name;
 
 		return common.toLowerCase().includes(countryToSearch.toLowerCase());
+	});
+}
+
+async function searchExactCountry(allCountries, countryToSearch) {
+	return allCountries.filter((country) => {
+		const { common } = country.name;
+
+		return common.toLowerCase().trim() === countryToSearch.toLowerCase().trim();
 	});
 }
 
@@ -172,6 +179,7 @@ export {
 	fetchCountriesData,
 	getAllRegions,
 	searchCountry,
+	searchExactCountry,
 	filterByRegion,
 	render,
 };

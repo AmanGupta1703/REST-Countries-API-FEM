@@ -7,6 +7,7 @@ import {
 	filterByRegion,
 	render,
 	searchCountry,
+	searchExactCountry,
 } from "./helper.js";
 
 const data = await fetchCountriesData();
@@ -87,7 +88,7 @@ function handleCardClick() {
 		cardCountry.addEventListener("click", function (e) {
 			const { countryname } = e.target.closest(".card")?.dataset;
 
-			searchCountry(data, countryname).then((data) => {
+			searchExactCountry(data, countryname).then((data) => {
 				mainCountryDetailEl.classList.toggle("hide");
 				mainContainerEl.classList.toggle("hide");
 				mainCountrySectionEl.classList.toggle("hide");
